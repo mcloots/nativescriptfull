@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as camera from "nativescript-camera";
 import { Image } from "tns-core-modules/ui/image";
+import * as application from "tns-core-modules/application";
 
 @Component({
   selector: 'ns-camera',
@@ -9,11 +10,10 @@ import { Image } from "tns-core-modules/ui/image";
   moduleId: module.id,
 })
 export class CameraComponent implements OnInit {
-
+  imageSource: string = "";
   constructor() { }
 
   ngOnInit() {
-
   }
 
   takePicture() {
@@ -22,8 +22,12 @@ export class CameraComponent implements OnInit {
       camera.takePicture().
         then((imageAsset) => {
           console.log("Result is an image asset instance");
-          var image = new Image();
-          image.src = imageAsset;
+          console.log(this.imageSource + " " + imageAsset.android)
+          if (application.android) {
+            this.imageSource = imageAsset.android as string;
+          } else if (application.ios) {
+            this.imageSource = imageAsset.ios  as string;
+          }
         }).catch((err) => {
           console.log("Error -> " + err.message);
         });
