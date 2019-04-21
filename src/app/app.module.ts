@@ -1,17 +1,12 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { MoviesComponent } from './movies/movies.component';
 import { MoviesService } from "./movies/movies.service";
-
-// Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
-
-// Uncomment and add to NgModule imports if you need to use the HttpClient wrapper
-// import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 @NgModule({
     bootstrap: [
@@ -20,6 +15,7 @@ import { MoviesService } from "./movies/movies.service";
     imports: [
         NativeScriptModule,
         NativeScriptHttpClientModule,
+        NativeScriptFormsModule,
         AppRoutingModule
     ],
     declarations: [

@@ -1,5 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Movie } from "./movie";
+import { map } from 'rxjs/operators';
 
 @Injectable(
     // Instead of providers array you can use provideIn
@@ -9,23 +12,16 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
     // }
 )
 export class MoviesService {
-    private serverUrl = "http://www.omdbapi.com/?apikey=48cc3813&t=";
+    private serverUrl = "http://www.omdbapi.com/?apikey=48cc3813&s=";
 
     constructor(private http: HttpClient) { }
 
-    getMovie(title: string) {
-        //let headers = this.createRequestHeader();
-        return this.http.get(this.serverUrl + title/*, { headers: headers }*/);
-    }
-
-    private createRequestHeader() {
-        // set headers here e.g.
-        let headers = new HttpHeaders({
-            "AuthKey": "my-key",
-            "AuthToken": "my-token",
-            "Content-Type": "application/json",
-         });
-
-        return headers;
+    getMovie(title: string) : Observable<Movie[]> {
+        return this.http.get(this.serverUrl + title)
+        .pipe(
+            map((search: any) => {
+                return search.Search;
+            })
+        );
     }
 }
