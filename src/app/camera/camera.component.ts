@@ -10,7 +10,7 @@ import * as application from "tns-core-modules/application";
   moduleId: module.id,
 })
 export class CameraComponent implements OnInit {
-  imageSource: string = "";
+  public imageSource: string = "";
   constructor() { }
 
   ngOnInit() {
@@ -22,11 +22,10 @@ export class CameraComponent implements OnInit {
       camera.takePicture().
         then((imageAsset) => {
           console.log("Result is an image asset instance");
-          console.log(this.imageSource + " " + imageAsset.android)
           if (application.android) {
-            this.imageSource = imageAsset.android as string;
+            alert(imageAsset.android as string);
           } else if (application.ios) {
-            this.imageSource = imageAsset.ios  as string;
+            alert(imageAsset.ios  as string);
           }
         }).catch((err) => {
           console.log("Error -> " + err.message);
