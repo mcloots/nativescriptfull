@@ -9,6 +9,7 @@ import { MoviesComponent } from './movies/movies.component';
 import { MoviesService } from "./movies/movies.service";
 import { LocationComponent } from './location/location.component';
 import { CameraComponent } from './camera/camera.component';
+import { HomeComponent } from "./home/home.component";
 
 @NgModule({
     bootstrap: [
@@ -24,7 +25,8 @@ import { CameraComponent } from './camera/camera.component';
         AppComponent,
         MoviesComponent,
         LocationComponent,
-        CameraComponent
+        CameraComponent,
+        HomeComponent
     ],
     providers: [MoviesService],
     schemas: [
