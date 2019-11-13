@@ -21,7 +21,7 @@ export class CameraComponent implements OnInit {
   takePicture() {
     camera.requestPermissions().then(function () {
       //takepicture
-      camera.takePicture().
+      camera.takePicture({cameraFacing : "front"}).
         then((imageAsset) => {
           console.log("Result is an image asset instance");
           if (application.android) {
